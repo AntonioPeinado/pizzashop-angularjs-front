@@ -2,6 +2,7 @@ import { App } from '../../module';
 
 export class PizzaCtrl {
     constructor(state, pizzaService) {
+        this.state = state;
         this.id = state.params && state.params.id;
         this.pizzaService = pizzaService;
         this.name = null;
@@ -29,8 +30,9 @@ export class PizzaCtrl {
         this.comment.date = new Date();
         this.comment.text = this.comment.text || "";
         this.comment.pizza = parseInt(this.id);
-        this.comment.user = "TODO";
-        this.pizzaService.submitComment(this.comment);
+        this.comment.user = "Demo";
+        this.pizzaService.submitComment(this.comment)
+            .then(this.state.reload());
     }
 }
 PizzaCtrl.$inject = ['$state', 'pizzaService'];

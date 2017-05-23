@@ -88408,6 +88408,7 @@ var PizzaCtrl = function () {
     function PizzaCtrl(state, pizzaService) {
         classCallCheck(this, PizzaCtrl);
 
+        this.state = state;
         this.id = state.params && state.params.id;
         this.pizzaService = pizzaService;
         this.name = null;
@@ -88442,7 +88443,7 @@ var PizzaCtrl = function () {
             this.comment.text = this.comment.text || "";
             this.comment.pizza = parseInt(this.id);
             this.comment.user = "TODO";
-            this.pizzaService.submitComment(this.comment);
+            this.pizzaService.submitComment(this.comment).then(this.state.reload());
         }
     }]);
     return PizzaCtrl;
@@ -88465,7 +88466,6 @@ var PizzaService = function () {
     }, {
         key: 'submitComment',
         value: function submitComment(data) {
-            console.log(data);
             return this.http.post('http://localhost:3000/comments/', data);
         }
     }]);
@@ -88484,10 +88484,11 @@ var ilAddPizza = {
 App.component('ilAddPizza', ilAddPizza);
 
 var AddPizzaCtrl = function () {
-    function AddPizzaCtrl(addPizzaService) {
+    function AddPizzaCtrl(addPizzaService, state) {
         classCallCheck(this, AddPizzaCtrl);
 
         this.addPizzaService = addPizzaService;
+        this.state = state;
         this.ingridients = null;
         this.pizza = {
             name: null,
@@ -88500,7 +88501,7 @@ var AddPizzaCtrl = function () {
     createClass(AddPizzaCtrl, [{
         key: 'savePizza',
         value: function savePizza() {
-            this.addPizzaService.savePizza(this.pizza);
+            this.addPizzaService.savePizza(this.pizza, this.picFile).then(this.state.go('pizzalist'));
         }
     }, {
         key: 'getIngridients',
@@ -88513,7 +88514,7 @@ var AddPizzaCtrl = function () {
     }]);
     return AddPizzaCtrl;
 }();
-AddPizzaCtrl.$inject = ['addPizzaService'];
+AddPizzaCtrl.$inject = ['addPizzaService', '$state'];
 App.controller('addPizzaCtrl', AddPizzaCtrl);
 
 var AddPizzaService = function () {
@@ -88526,8 +88527,35 @@ var AddPizzaService = function () {
 
     createClass(AddPizzaService, [{
         key: 'savePizza',
-        value: function savePizza(data) {
+        value: function savePizza(data, picFile) {
             return this.http.post(this.resolveUrl.resolve('pizzas'), data);
+            /*
+            * This should be used to save the pizza with its image in the backend
+            * but won't work with JSON-server. The Content-type is set to undefined
+            * so it will be automatically set.
+            *
+                return this.http({
+                    method: 'POST',
+                    headers: { 'Content-Type': undefined },
+                    url: '/api/v1/pizzas/',
+                    data: {
+                        name: data.name,
+                        ingredients: JSON.stringify(data.ingredients),
+                        image: picFile,
+                    },
+                    transformRequest: function (data, headersGetter) {
+                        let formData = new FormData();
+                        angular.forEach(data, function (value, key) {
+                            if (key === 'image' && value) {
+                                formData.append(key, value, value.name);
+                            }
+                            else formData.append(key, value);
+                        });
+                        return formData;
+                        }
+                    });
+                }
+             */
         }
     }, {
         key: 'getIngridients',
