@@ -26,7 +26,8 @@ export default {
         babel({
             exclude: [
                 'node_modules/**',
-                '**/*.html'
+                '**/*.html',
+                '**/*.css'
             ]
         }),
         uglify()

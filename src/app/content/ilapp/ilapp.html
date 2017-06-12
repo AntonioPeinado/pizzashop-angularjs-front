@@ -1,0 +1,11 @@
+<div layout="column" ng-cloak>
+    <section layout="row" flex>
+        <il-sidenav close-sidenav="$ctrl.closeSidenav" md-sidenav="$ctrl.mdSidenav"></il-sidenav>
+        <div layout="column" flex>
+            <il-appbar layout-align="center center" layout="row" class="site-content-toolbar" is-sidenav-closed="$ctrl.isSidenavClosed"
+                open-sidenav="$ctrl.openSidenav" md-sidenav="$ctrl.mdSidenav">
+            </il-appbar>
+            <il-content flex layout-padding></il-content>
+        </div>
+    </section>
+</div>

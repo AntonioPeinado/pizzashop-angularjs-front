@@ -1,12 +1,12 @@
 {
   "name": "pizzashop",
   "version": "1.0.0",
-  "description": "pizza shop with Django and AngularJS",
+  "description": "pizza shop with AngularJS",
   "main": "index.js",
   "scripts": {
     "build": "rollup -c rollup.config.js",
     "build:dev": "rollup -c rollup.config.dev.js --watch",
-    "serve-json": "json-server db.json",
+    "serve-json": "json-server --watch db.json",
     "start": "npm-run-all --parallel build:dev serve-json"
   },
   "repository": {
