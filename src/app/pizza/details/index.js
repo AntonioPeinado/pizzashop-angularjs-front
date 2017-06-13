@@ -1,1 +1,1 @@
-export * from './ilpizzadetails';
+export * from './pizzadetails';

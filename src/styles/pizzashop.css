@@ -1,5 +1,13 @@
 /* Your custom css goes here */
+@media (min-width: 600px){
 .pizza-card{
-    height: 382px;
-    width: 308px;
+    height: 400px;
+    width: 320px;
+    }
+}
+@media (max-width: 600px){
+.pizza-card{
+    height: 240px;
+    width: 160px;
+    }
 }

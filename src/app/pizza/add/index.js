@@ -1,1 +1,1 @@
-export * from './iladdpizza';
+export * from './addpizza';

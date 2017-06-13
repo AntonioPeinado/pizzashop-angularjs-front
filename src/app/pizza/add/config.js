@@ -9,5 +9,4 @@ export function config(stateProvider) {
             component: 'ilAddPizza'
         });
 }
-
 App.config(config);  

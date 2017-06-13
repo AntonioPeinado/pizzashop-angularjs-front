@@ -1,9 +1,13 @@
 import { App } from './module';
+import {} from './constant';
 
 export const resolveUrl = function (URL) {
     return {
-        resolve: function (path) {
+        getRoute: function (path) {
             return `${URL}/${path}`;
+        },
+        getRouteById: function(path,id){
+            return `${this.getRoute(path)}/${id}`;
         }
     };
 }

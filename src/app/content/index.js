@@ -1,2 +1,1 @@
-export * from './ilapp';
-export * from './config.js'
+export * from './app';
