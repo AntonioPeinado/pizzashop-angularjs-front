@@ -85,22 +85,6 @@
         }
       ],
       "comments": []
-    },
-    {
-      "name": "wert",
-      "ingredients": [
-        {
-          "id": 2,
-          "name": "corn",
-          "prize": 2
-        },
-        {
-          "id": 4,
-          "name": "ham",
-          "prize": 3
-        }
-      ],
-      "id": 5
     }
   ],
   "ingredients": [
