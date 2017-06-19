@@ -3,7 +3,6 @@ import { default as _uirouter } from '@uirouter/angularjs';
 import { default as _ngmaterial} from 'angular-material';
 import { default as _ngmessages} from 'angular-messages';
 import {default as _ngfileupload } from 'ng-file-upload';
-import {} from '../styles';
 
 export const angular = _angular;
 export const uirouter = _uirouter;
